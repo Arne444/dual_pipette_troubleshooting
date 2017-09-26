@@ -5,8 +5,16 @@ from opentrons import robot, containers, instruments
 source_tubes = containers.load('tube-rack-2ml', 'D2', 'tube rack')
 output = containers.load('96-PCR-flat', 'C1', 'output')
 
-p200rack = containers.load('tiprack-10ul-H', 'A1', 'p200-rack')
-		
+containers.create(
+'7x12_tiprack',
+grid=(7,12),
+spacing=(9, 9),
+diameter=5,
+depth=60
+)
+
+p200rack = containers.load('7x12_tiprack', 'A1', 'p200-rack')
+
 p200 = instruments.Pipette(
     tip_racks=[p200rack],
     min_volume=20,
@@ -14,6 +22,6 @@ p200 = instruments.Pipette(
     axis="b"
 )
 
-for i in range(5):
+for i in range(10):
 	p200.pick_up_tip()
 	p200.return_tip()
