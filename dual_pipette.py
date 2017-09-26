@@ -25,4 +25,3 @@ p200 = instruments.Pipette(
 for i in range(10):
 	p200.pick_up_tip()
 	p200.return_tip()
-
